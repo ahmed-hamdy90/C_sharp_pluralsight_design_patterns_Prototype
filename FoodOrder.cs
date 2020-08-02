@@ -23,16 +23,22 @@ namespace PrototypePattern
         public string[] OrderContents;
 
         /// <summary>
+        /// details for food order
+        /// </summary>
+        public OrderInfo OrderInfo;
+
+        /// <summary>
         /// FoodOrder constructor
         /// </summary>
         /// <param name="name">customer name value</param>
         /// <param name="delivery">flag define need to delivery order or not</param>
         /// <param name="contents">order food contents list</param>
-        public FoodOrder(string name, bool delivery, string[] contents)
+        public FoodOrder(string name, bool delivery, string[] contents, OrderInfo info)
         {
             this.CustomerName = name;
             this.IsDelivery = delivery;
             this.OrderContents = contents;
+            this.OrderInfo = info;
         }
 
         /// <summary>
@@ -42,7 +48,8 @@ namespace PrototypePattern
         {
             Console.WriteLine("----------- Prototype Food Order -----------");
             Console.WriteLine("\nName: {0} \nDelivery: {1}", this.CustomerName, this.IsDelivery);
-            Console.WriteLine($"\nOrder Contents: {String.Join(", ", OrderContents)}");
+            Console.WriteLine($"Order Contents: {String.Join(", ", OrderContents)}");
+            Console.WriteLine($"ID: {this.OrderInfo.Id}");
             Console.WriteLine("\n");
         }
     }

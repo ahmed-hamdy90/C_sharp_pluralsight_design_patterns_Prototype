@@ -14,7 +14,8 @@ namespace PrototypePattern
         static void Main(string[] args)
         {
             Console.WriteLine("Original Order: ");
-            FoodOrder savedOrder = new FoodOrder("Harrison", true, new string[]{"Pizza", "Coke"});
+            FoodOrder savedOrder =
+                new FoodOrder("Harrison", true, new string[]{"Pizza", "Coke"}, new OrderInfo(2345));
             savedOrder.Debug();
         }
     }
