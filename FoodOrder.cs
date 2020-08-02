@@ -5,7 +5,7 @@ namespace PrototypePattern
     /// <summary>
     /// FoodOrder class represent model class for ordering food order
     /// </summary>
-    public class FoodOrder
+    public class FoodOrder: Prototype
     {
         /// <summary>
         /// name of customer who order
@@ -41,10 +41,24 @@ namespace PrototypePattern
             this.OrderInfo = info;
         }
 
-        /// <summary>
-        /// Print all food order details into console screen
-        /// </summary>
-        public void Debug()
+        /// <inheritdoc cref="Prototype.ShallowCopy"/>        
+        public override Prototype ShallowCopy()
+        {
+            return (Prototype) this.MemberwiseClone();
+        }
+
+        /// <inheritdoc cref="Prototype.DeepCopy"/>        
+        public override Prototype DeepCopy()
+        {
+            // preferred to re-use built MemberwiseClone method again instead of use ShallowCopy method, to keep both method separated
+            FoodOrder clonedOrder = (FoodOrder) this.MemberwiseClone();
+            clonedOrder.OrderInfo = new OrderInfo(this.OrderInfo.Id); // re-create new instance with old instance information
+
+            return clonedOrder;
+        }
+
+        /// <inheritdoc cref="Prototype.Debug"/>
+        public override void Debug()
         {
             Console.WriteLine("----------- Prototype Food Order -----------");
             Console.WriteLine("\nName: {0} \nDelivery: {1}", this.CustomerName, this.IsDelivery);
